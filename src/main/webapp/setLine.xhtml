@@ -9,12 +9,13 @@
 
 	<ui:define name="content">
 		<h:form id="historyForm">
-			<h:panelGrid columns="2">
+			<h:panelGrid columns="3">
 
 				<h:outputText value="#{msg.lineDateLabel}" />
 				<rich:calendar value="#{historyBean.date}"
 					id="calendar" datePattern="dd.MM.yyyy" showApplyButton="#{true}"
 					cellWidth="24px" cellHeight="22px" style="width:200px;color:black;">
+					<f:validator validatorId="dateValidator" />
 					<a4j:ajax event="change" execute="@this" render="selects"/>
 				</rich:calendar>
 				<rich:message for="calendar" ajaxRendered="true" />

@@ -118,6 +118,14 @@ public class RouteFormBean implements Serializable {
 	public String editRoute(){
 		
 		routeToUpdate = routes.getRowData();
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(routeToUpdate.getStartTime());
+		h1 = cal.get(Calendar.HOUR_OF_DAY);
+		m1 = cal.get(Calendar.MINUTE);
+		
+		cal.setTime(routeToUpdate.getStopTime());
+		h2 = cal.get(Calendar.HOUR_OF_DAY);
+		m2 = cal.get(Calendar.MINUTE);
 		
 		return "editRoute?faces-redirect=true";
 	}
@@ -136,6 +144,10 @@ public class RouteFormBean implements Serializable {
 		routeToUpdate.setStopTime(cal.getTime());
 		rm.editRoute(routeToUpdate);
 		routeToUpdate = new Route();
+		h2 = 0;
+		h1 = 0;
+		m2 = 0;
+		m1 = 0;
 		return "showRoutes?faces-redirect=true";
 	}
 	
