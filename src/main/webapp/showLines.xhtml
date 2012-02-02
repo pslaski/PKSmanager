@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/templates/default.xhtml">
+
+	<ui:define name="content">
+		<h:form>
+			<h:dataTable value="#{historyBean.allHistories}" var="item">
+				<f:facet name="header">#{msg.LinesLabel}</f:facet>
+				<h:column>
+					<f:facet name="header">#{msg.IdLabel}</f:facet>
+					<h:outputText value="#{item.id}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">#{msg.lineDriverLabel}</f:facet>
+					<h:outputText value="#{item.driver}" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">#{msg.lineBusLabel}</f:facet>
+					<h:outputText value="#{item.bus}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">#{msg.lineRouteLabel}</f:facet>
+					<h:outputText value="#{item.route}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">#{msg.lineDateLabel}</f:facet>
+					<h:outputText value="#{item.date}" >
+						<f:convertDateTime pattern="dd/MM/yyyy" timeZone="GMT+1"/>
+					</h:outputText>
+				</h:column>
+
+
+				<h:column>
+					<f:facet name="header">#{msg.action}</f:facet>
+					<h:commandLink value="#{msg.actionDelete}"
+						action="#{historyBean.deleteHistory}" />
+					<h:commandLink value=" Details " action="#{personBean.showDetails}"/>
+				</h:column>
+
+			</h:dataTable>
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>

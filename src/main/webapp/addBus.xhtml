@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/templates/default.xhtml"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+
+	<ui:define name="content">
+		<h:form id="busForm">
+			<h:panelGrid columns="3" class="form">
+
+				<h:outputText value="#{msg.busVendorLabel}" />
+				<h:inputText id="vendor" value="#{busBean.bus.vendor}"
+					required="#{true}" />
+				<rich:message for="vendor" ajaxRendered="true" />
+				
+
+				<h:outputText value="#{msg.busModelLabel}" />
+				<h:inputText id="model" value="#{busBean.bus.model}"
+					required="#{true}" />
+				<rich:message for="vendor" ajaxRendered="true" />
+
+				<h:outputText value="#{msg.busStatusLabel}" />
+				<h:selectBooleanCheckbox id="status" value="#{busBean.bus.status}" />
+				<rich:message for="status" ajaxRendered="true" />
+				
+				<h:outputText value="#{msg.busSeatsAmountLabel}" />
+				<h:inputText id="seatsAmount" value="#{busBean.bus.seatsAmount}" />
+				<rich:message for="seatsAmount" ajaxRendered="true" />
+				
+			</h:panelGrid>
+
+			<h:commandButton value="#{msg.busFormOKButton}"
+				action="#{busBean.addBus}" />
+			
+			<rich:tooltip id="tt1" target="vendor" styleClass="tooltip" layout="block">
+                <span style="white-space: nowrap">#{msg.busVendorTooltip}</span>
+            </rich:tooltip>
+            <rich:tooltip id="tt2" target="model" styleClass="tooltip" layout="block">
+                <span style="white-space: nowrap">#{msg.busModelTooltip}</span>
+            </rich:tooltip>
+            <rich:tooltip id="tt3" target="status" styleClass="tooltip" layout="block">
+                <span style="white-space: nowrap">#{msg.busStatusTooltip}</span>
+            </rich:tooltip>
+            <rich:tooltip id="tt4" target="seatsAmount" styleClass="tooltip" layout="block">
+                <span style="white-space: nowrap">#{msg.busSeatsAmountTooltip}</span>
+            </rich:tooltip>
+			
+
+		</h:form>
+
+	</ui:define>
+</ui:composition>

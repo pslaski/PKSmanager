@@ -1,0 +1,18 @@
+INSERT INTO driver(name, surname, status) VALUES ('Kazimierz', 'Śląski', true)
+INSERT INTO driver(name, surname, status) VALUES ('Marcin', 'Bralewski', true)
+INSERT INTO driver(name, surname, status) VALUES ('Jan', 'Kowalski - Rotchild', true)
+INSERT INTO driver(name, surname, status) VALUES ('Andrzej', 'Andrzej', true)
+INSERT INTO driver(name, surname, status) VALUES ('Wiesław', 'P', false)
+
+INSERT INTO bus(vendor, model, status, seatsAmount) VALUES ('Mercedes', 'Travego', true, 49)
+INSERT INTO bus(vendor, model, status, seatsAmount) VALUES ('Mercedes', 'Tourismo', true, 51)
+INSERT INTO bus(vendor, model, status, seatsAmount) VALUES ('MAN', 'Lions Coach', true, 49)
+INSERT INTO bus(vendor, model, status, seatsAmount) VALUES ('MAN', 'Lions Coach L', true, 57)
+INSERT INTO bus(vendor, model, status, seatsAmount) VALUES ('Jelcz', 'PR110', true, 36)
+INSERT INTO bus(vendor, model, status, seatsAmount) VALUES ('Volvo', '9900', false, 57)
+
+INSERT INTO route(name, routeFrom, routeTo, via, startTime, stopTime) VALUES('Mrągowo-Gdańsk', 'Mrągowo', 'Gdańsk', 'Olsztyn, Elbląg', '09:40:00', '14:20:00')
+INSERT INTO route(name, routeFrom, routeTo, via, startTime, stopTime) VALUES('Mrągowo-Olsztyn', 'Mrągowo', 'Olsztyn', 'Biskupiec, Barczewo', '13:30:00', '15:00:00')
+INSERT INTO route(name, routeFrom, routeTo, via, startTime, stopTime) VALUES('Mrągowo-Ryn', 'Mrągowo', 'Ryn', 'Zalec', '09:30:00', '10:05:00')
+INSERT INTO route(name, routeFrom, routeTo, via, startTime, stopTime) VALUES('Mrągowo-Mikołajki', 'Mrągowo', 'Mikołajki', 'Kosewo', '12:10:00', '13:00:00')
+INSERT INTO route(name, routeFrom, routeTo, via, startTime, stopTime) VALUES('Mrągowo-Warszawa', 'Mrągowo', 'Warszawa', 'Przasnysz, Pułtusk', '11:30:00', '16:00:00')

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/templates/default.xhtml"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+
+	<ui:define name="content">
+		<h:form id="historyForm">
+			<h:panelGrid columns="2">
+
+				<h:outputText value="#{msg.lineDateLabel}" />
+				<rich:calendar value="#{historyBean.date}"
+					id="calendar" datePattern="dd.MM.yyyy" showApplyButton="#{true}"
+					cellWidth="24px" cellHeight="22px" style="width:200px;color:black;">
+					<a4j:ajax event="change" execute="@this" render="selects"/>
+				</rich:calendar>
+				<h:panelGrid id="selects" columns="2">
+				<h:outputText value="#{msg.lineDriverLabel}" />
+				<h:selectOneMenu id="driverId" value="#{historyBean.driverId}">
+				  <f:selectItems value="#{historyBean.driverOptions}" />
+				</h:selectOneMenu>
+				
+				<h:outputText value="#{msg.lineBusLabel}" />
+				<h:selectOneMenu id="busId" value="#{historyBean.busId}">
+				  <f:selectItems value="#{historyBean.busOptions}" />
+				</h:selectOneMenu>
+				
+				<h:outputText value="#{msg.lineRouteLabel}" />
+				<h:selectOneMenu id="routeId" value="#{historyBean.routeId}">
+				  <f:selectItems value="#{historyBean.routeOptions}" />
+				</h:selectOneMenu>
+				</h:panelGrid>
+	
+			</h:panelGrid>
+
+			<h:commandButton value="#{msg.historyFormOKButton}"
+				action="#{historyBean.addHistory}" />
+
+			<rich:tooltip id="tt1" target="calendar" styleClass="tooltip" layout="block">
+                <span style="white-space: nowrap">#{msg.lineCalendarTooltip}</span>
+            </rich:tooltip>
+            <rich:tooltip id="tt2" target="driverId" styleClass="tooltip" layout="block">
+                <span style="white-space: nowrap">#{msg.lineDriverTooltip}</span>
+            </rich:tooltip>
+            <rich:tooltip id="tt3" target="busId" styleClass="tooltip" layout="block">
+                <span style="white-space: nowrap">#{msg.lineBusTooltip}</span>
+            </rich:tooltip>
+            <rich:tooltip id="tt4" target="routeId" styleClass="tooltip" layout="block">
+                <span style="white-space: nowrap">#{msg.lineRouteTooltip}</span>
+            </rich:tooltip>
+
+		</h:form>
+
+	</ui:define>
+</ui:composition>

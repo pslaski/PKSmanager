@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+  <div>
+	<h:form>
+	  <ul>
+		<li>
+		  <h:commandLink action="home?faces-redirect=true">
+			<h:outputText value="#{msg.linkHome}" />
+		  </h:commandLink>
+		</li>
+		<li>
+		  <h:commandLink action="addDriver?faces-redirect=true">
+			 <h:outputText value="#{msg.menuAddDriverLabel}" />
+		  </h:commandLink>
+		</li>
+		<li>
+		  <h:commandLink action="showDrivers?faces-redirect=true">
+			 <h:outputText value="#{msg.menuShowDriversLabel}" />
+		  </h:commandLink>
+		</li>
+		<li>
+		  <h:commandLink action="addBus?faces-redirect=true">
+			 <h:outputText value="#{msg.menuAddBusLabel}" />
+		  </h:commandLink>
+		</li>
+		<li>
+		  <h:commandLink action="showBuses?faces-redirect=true">
+			 <h:outputText value="#{msg.menuShowBusesLabel}" />
+		  </h:commandLink>
+		</li>
+		<li>
+		  <h:commandLink action="addRoute?faces-redirect=true">
+			 <h:outputText value="#{msg.menuAddRouteLabel}" />
+		  </h:commandLink>
+		</li>
+		<li>
+		  <h:commandLink action="showRoutes?faces-redirect=true">
+			 <h:outputText value="#{msg.menuShowRoutesLabel}" />
+		  </h:commandLink>
+		</li>
+		<li>
+		  <h:commandLink action="setLine?faces-redirect=true">
+			 <h:outputText value="#{msg.menuSetLineLabel}" />
+		  </h:commandLink>
+		</li>
+		<li>
+		  <h:commandLink action="showLines?faces-redirect=true">
+			 <h:outputText value="#{msg.menuShowLinesLabel}" />
+		  </h:commandLink>
+		</li>
+	</ul>
+   </h:form>
+  </div>
+</ui:composition>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/templates/default.xhtml"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+
+	<ui:define name="content">
+		<h:form id="driverForm">
+			<h:panelGrid columns="3" class="form">
+
+				<h:outputText value="#{msg.driverNameLabel}" />
+				<h:inputText id="name" value="#{driverBean.driver.name}"
+					required="#{true}" />
+				<rich:message for="name" ajaxRendered="true" />
+
+				<h:outputText value="#{msg.driverSurnameLabel}" />
+				<h:inputText id="surname" value="#{driverBean.driver.surname}"
+					required="#{true}" />
+				<rich:message for="surname" ajaxRendered="true" />
+
+				<h:outputText value="#{msg.driverStatusLabel}" />
+				<h:selectBooleanCheckbox id="status" value="#{driverBean.driver.status}" />
+			</h:panelGrid>
+
+			<h:commandButton value="#{msg.driverFormOKButton}"
+				action="#{driverBean.addDriver}" />
+
+			<rich:tooltip id="tt1" target="name" styleClass="tooltip" layout="block">
+                <span style="white-space: nowrap">#{msg.driverNameTooltip}</span>
+            </rich:tooltip>
+            <rich:tooltip id="tt2" target="surname" styleClass="tooltip" layout="block">
+                <span style="white-space: nowrap">#{msg.driverSurnameTooltip}</span>
+            </rich:tooltip>
+            <rich:tooltip id="tt3" target="status" styleClass="tooltip" layout="block">
+                <span style="white-space: nowrap">#{msg.driverStatusTooltip}</span>
+            </rich:tooltip>
+
+		</h:form>
+
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/templates/default.xhtml"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+
+	<ui:define name="content">
+		<h:form id="routeForm">
+			<h:panelGrid columns="3" class="form">
+
+				<h:outputText value="#{msg.routeNameLabel}" />
+				<h:inputText id="name" value="#{routeBean.routeToUpdate.name}"
+					required="#{true}" validator="#{routeBean.uniqueName}" />
+				<rich:message for="name" ajaxRendered="true" />
+
+				<h:outputText value="#{msg.routeRouteFromLabel}" />
+				<h:inputText id="routeFrom" value="#{routeBean.routeToUpdate.routeFrom}"
+					required="#{true}" />
+				<rich:message for="routeFrom" ajaxRendered="true" />
+					
+				<h:outputText value="#{msg.routeRouteToLabel}" />
+				<h:inputText id="routeTo" value="#{routeBean.routeToUpdate.routeTo}"
+					required="#{true}" />
+				<rich:message for="routeTo" ajaxRendered="true" />
+					
+				<h:outputText value="#{msg.routeViaLabel}" />
+				<h:inputText id="via" value="#{routeBean.routeToUpdate.via}" />
+				<rich:message for="via" ajaxRendered="true" />
+
+				<h:outputText value="#{msg.routeStartTimeLabel}" />
+				<h:panelGrid columns="2">
+					<h:outputLabel value="HH:" />
+	                    <rich:inputNumberSpinner id="h1" value="#{routeBean.h1}" minValue="0" maxValue="23"
+	                        onchange="validate('routeForm:h1','routeForm:m1','routeForm:h2','routeForm:m2',true)" />
+	                    <h:outputLabel value="MM:" />
+	                    <rich:inputNumberSpinner id="m1" value="#{routeBean.m1}" minValue="0" maxValue="59"
+	                        onchange="validate('routeForm:h1','routeForm:m1','routeForm:h2','routeForm:m2',true)">
+	                    </rich:inputNumberSpinner>
+                </h:panelGrid>
+				<rich:message for="h1" ajaxRendered="true" />
+				
+				<h:outputText value="#{msg.routeStopTimeLabel}" />
+				<h:panelGrid columns="2">
+					<h:outputLabel value="HH:" />
+                    <rich:inputNumberSpinner id="h2" value="#{routeBean.h2}" minValue="0" maxValue="23"
+                        onchange="validate('routeForm:h1','routeForm:m1','routeForm:h2','routeForm:m2',false)" />
+                    <h:outputLabel value="MM:" />
+                    <rich:inputNumberSpinner id="m2" value="#{routeBean.m2}" minValue="0" maxValue="59"
+                        onchange="validate('routeForm:h1','routeForm:m1','routeForm:h2','routeForm:m2',false)" />
+				</h:panelGrid>
+				<rich:message for="h2" ajaxRendered="true" />
+				
+
+			</h:panelGrid>
+
+			<h:commandButton value="#{msg.routeFormOKButton}"
+				action="#{routeBean.updateRoute}" />
+
+			<rich:tooltip id="tt1" target="name" styleClass="tooltip" layout="block">
+                <span style="white-space: nowrap">#{msg.routeNameTooltip}</span>
+            </rich:tooltip>
+            <rich:tooltip id="tt2" target="routeFrom" styleClass="tooltip" layout="block">
+                <span style="white-space: nowrap">#{msg.routeRouteFromTooltip}</span>
+            </rich:tooltip>
+            <rich:tooltip id="tt3" target="routeTo" styleClass="tooltip" layout="block">
+                <span style="white-space: nowrap">#{msg.routeRouteToTooltip}</span>
+            </rich:tooltip>
+            <rich:tooltip id="tt4" target="via" styleClass="tooltip" layout="block">
+                <span style="white-space: nowrap">#{msg.routeViaTooltip}</span>
+            </rich:tooltip>	
+            		
+
+		</h:form>
+
+	</ui:define>
+</ui:composition>
