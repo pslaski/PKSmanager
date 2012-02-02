@@ -29,6 +29,7 @@ public class Bus {
 	public void setId(Long id) {
 		this.id = id;
 	}
+	
 	@Size(min = 1, max = 20)
 	public String getVendor() {
 		return vendor;

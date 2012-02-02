@@ -23,6 +23,16 @@ public class BusFormBean implements Serializable {
 	@Inject
 	private BusManager bm;
 
+	
+	
+	public Bus getBusToUpdate() {
+		return busToUpdate;
+	}
+
+	public void setBusToUpdate(Bus busToUpdate) {
+		this.busToUpdate = busToUpdate;
+	}
+
 	public Bus getBus() {
 		return bus;
 	}

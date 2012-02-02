@@ -35,7 +35,14 @@ public class RouteFormBean implements Serializable {
 	RouteManager rm;
 
 	
-	
+	public Route getRouteToUpdate() {
+		return routeToUpdate;
+	}
+
+	public void setRouteToUpdate(Route routeToUpdate) {
+		this.routeToUpdate = routeToUpdate;
+	}
+
 	public Integer getH1() {
 		return h1;
 	}

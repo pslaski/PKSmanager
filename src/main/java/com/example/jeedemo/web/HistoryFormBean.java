@@ -11,6 +11,8 @@ import javax.faces.model.SelectItem;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.richfaces.model.Filter;
+
 import com.example.jeedemo.domain.Bus;
 import com.example.jeedemo.domain.Driver;
 import com.example.jeedemo.domain.History;
@@ -33,6 +35,9 @@ public class HistoryFormBean implements Serializable {
 	private Long driverId = 0L;
 	private Long busId = 0L;
 	private Long routeId = 0L;
+	private Long driverFilter;
+	private Long routeFilter;
+	private Long busFilter;
 	
 	@Inject
 	HistoryManager hm;
@@ -44,6 +49,30 @@ public class HistoryFormBean implements Serializable {
 	RouteManager rm;
 	
 	
+
+	public Long getDriverFilter() {
+		return driverFilter;
+	}
+
+	public void setDriverFilter(Long driverFilter) {
+		this.driverFilter = driverFilter;
+	}
+
+	public Long getRouteFilter() {
+		return routeFilter;
+	}
+
+	public void setRouteFilter(Long routeFilter) {
+		this.routeFilter = routeFilter;
+	}
+
+	public Long getBusFilter() {
+		return busFilter;
+	}
+
+	public void setBusFilter(Long busFilter) {
+		this.busFilter = busFilter;
+	}
 
 	public Long getDriverId() {
 		return driverId;
@@ -105,7 +134,6 @@ public class HistoryFormBean implements Serializable {
 		routeId = 0L;
 		historiesForDate = hm.getHistoryByDate(date);
 		return "showLines?faces-redirect=true";
-		//return null;
 	}
 
 	public String deleteHistory() {
@@ -219,5 +247,76 @@ public class HistoryFormBean implements Serializable {
 		}
 		
 	  }
+	
+	public SelectItem[] getRouteAllOptions() {
+		List<Route> routes = rm.getAllRoutes();
+	    SelectItem[] items = new SelectItem[routes.size()+1];
+	    items[0] = new SelectItem("");
+	    int i = 1;
+	    for(Route r: routes) {
+	      items[i++] = new SelectItem(r.getId().toString(), r.toString());
+	    }
+	    return items;
+	  }
+	
+	public SelectItem[] getDriverAllOptions() {
+		List<Driver> drivers = dm.getAllDrivers();
+	    SelectItem[] items = new SelectItem[drivers.size()+1];
+	    items[0] = new SelectItem("");
+	    int i = 1;
+	    for(Driver d: drivers) {
+	      items[i++] = new SelectItem(d.getId().toString(), d.toString());
+	    }
+	    return items;
+	  }
+	
+	public SelectItem[] getBusAllOptions() {
+		List<Bus> buses = bm.getAllBus();
+	    SelectItem[] items = new SelectItem[buses.size()+1];
+	    items[0] = new SelectItem("");
+	    int i = 1;
+	    for(Bus b: buses) {
+	      items[i++] = new SelectItem(b.getId().toString(), b.toString());
+	    }
+	    return items;
+	  }
+	
+	//FILTERS
+	
+    public Filter<?> getFilterRoute() {
+        return new Filter<History>() {
+            public boolean accept(History t) {
+                Long routeId = getRouteFilter();
+                if (routeId == null ||  routeId.equals(t.getRoute().getId())) {
+                    return true;
+                }
+                return false;
+            }
+        };
+    }
+    
+    public Filter<?> getFilterDriver() {
+        return new Filter<History>() {
+            public boolean accept(History t) {
+                Long driverId = getDriverFilter();
+                if (driverId == null ||  driverId.equals(t.getDriver().getId())) {
+                    return true;
+                }
+                return false;
+            }
+        };
+    }
+    
+    public Filter<?> getFilterBus() {
+        return new Filter<History>() {
+            public boolean accept(History t) {
+                Long busId = getBusFilter();
+                if (busId == null ||  busId.equals(t.getBus().getId())) {
+                    return true;
+                }
+                return false;
+            }
+        };
+    }
 
 }

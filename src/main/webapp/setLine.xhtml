@@ -17,6 +17,8 @@
 					cellWidth="24px" cellHeight="22px" style="width:200px;color:black;">
 					<a4j:ajax event="change" execute="@this" render="selects"/>
 				</rich:calendar>
+				<rich:message for="calendar" ajaxRendered="true" />
+				
 				<h:panelGrid id="selects" columns="2">
 				<h:outputText value="#{msg.lineDriverLabel}" />
 				<h:selectOneMenu id="driverId" value="#{historyBean.driverId}">

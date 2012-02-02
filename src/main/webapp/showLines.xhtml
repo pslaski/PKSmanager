@@ -3,47 +3,68 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
 	template="/templates/default.xhtml">
 
 	<ui:define name="content">
-		<h:form>
-			<h:dataTable value="#{historyBean.allHistories}" var="item">
-				<f:facet name="header">#{msg.LinesLabel}</f:facet>
-				<h:column>
-					<f:facet name="header">#{msg.IdLabel}</f:facet>
-					<h:outputText value="#{item.id}" />
-				</h:column>
-				<h:column>
-					<f:facet name="header">#{msg.lineDriverLabel}</f:facet>
-					<h:outputText value="#{item.driver}" />
-				</h:column>
+		    <h:form id="form">
+        <rich:dataTable value="#{historyBean.allHistories}" var="history" id="table" rows="10">
+            <f:facet name="header">#{msg.LinesLabel}</f:facet>
+            
+            <rich:column filter="#{historyBean.filterRoute}">
+                <f:facet name="header"><h:panelGroup>
+                  <h:outputText value="#{msg.lineRouteLabel}" />
+                  <h:selectOneMenu value="#{historyBean.routeFilter}">
+                      <f:selectItems value="#{historyBean.routeAllOptions}" />
+                      <a4j:ajax render="table" execute="@this" event="change" />
+                  </h:selectOneMenu>
+              </h:panelGroup></f:facet>
+              <h:outputText value="#{history.route}" />
+            </rich:column>
+            
+            <rich:column filter="#{historyBean.filterDriver}">
+                <f:facet name="header"><h:panelGroup>
+                  <h:outputText value="#{msg.lineDriverLabel}" />
+                  <h:selectOneMenu value="#{historyBean.driverFilter}">
+                      <f:selectItems value="#{historyBean.driverAllOptions}" />
+                      <a4j:ajax render="table" execute="@this" event="change" />
+                  </h:selectOneMenu>
+              </h:panelGroup></f:facet>
+              <h:outputText value="#{history.driver}" />
+            </rich:column>
+            
+            <rich:column filter="#{historyBean.filterBus}">
+                <f:facet name="header"><h:panelGroup>
+                  <h:outputText value="#{msg.lineBusLabel}" />
+                  <h:selectOneMenu value="#{historyBean.busFilter}">
+                      <f:selectItems value="#{historyBean.busAllOptions}" />
+                      <a4j:ajax render="table" execute="@this" event="change" />
+                  </h:selectOneMenu>
+              </h:panelGroup></f:facet>
+              <h:outputText value="#{history.bus}" />
+            </rich:column>
+            
+             <rich:column>
+                <f:facet name="header">#{msg.lineDateLabel}</f:facet>
+                <h:outputText value="#{history.date}" >
+		        <f:convertDateTime pattern="dd/MM/yyyy" timeZone="GMT+1"/>
+				</h:outputText>
+            </rich:column>
+            
+            <rich:column>
+                <f:facet name="header">#{msg.action}</f:facet>
+		        <h:commandLink value="#{msg.actionDelete}" action="#{historyBean.deleteHistory}"/><br />
+		        <h:commandLink value="#{msg.actionEdit}" action="#{historyBean.editHistory}"/>
+            </rich:column>
+            <f:facet name="footer">
+                <rich:dataScroller />
+            </f:facet>
+        </rich:dataTable>
 
-				<h:column>
-					<f:facet name="header">#{msg.lineBusLabel}</f:facet>
-					<h:outputText value="#{item.bus}" />
-				</h:column>
-				<h:column>
-					<f:facet name="header">#{msg.lineRouteLabel}</f:facet>
-					<h:outputText value="#{item.route}" />
-				</h:column>
-				<h:column>
-					<f:facet name="header">#{msg.lineDateLabel}</f:facet>
-					<h:outputText value="#{item.date}" >
-						<f:convertDateTime pattern="dd/MM/yyyy" timeZone="GMT+1"/>
-					</h:outputText>
-				</h:column>
-
-
-				<h:column>
-					<f:facet name="header">#{msg.action}</f:facet>
-					<h:commandLink value="#{msg.actionDelete}"
-						action="#{historyBean.deleteHistory}" />
-					<h:commandLink value=" Details " action="#{personBean.showDetails}"/>
-				</h:column>
-
-			</h:dataTable>
-		</h:form>
-
+    </h:form> 
+		
 	</ui:define>
 
 </ui:composition>

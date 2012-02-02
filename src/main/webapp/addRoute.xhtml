@@ -13,7 +13,9 @@
 
 				<h:outputText value="#{msg.routeNameLabel}" />
 				<h:inputText id="name" value="#{routeBean.route.name}"
-					required="#{true}" validator="#{routeBean.uniqueName}" />
+					required="#{true}" validator="#{routeBean.uniqueName}" >
+					<a4j:ajax execute="@this" />
+					</h:inputText>
 				<rich:message for="name" ajaxRendered="true" />
 
 				<h:outputText value="#{msg.routeRouteFromLabel}" />

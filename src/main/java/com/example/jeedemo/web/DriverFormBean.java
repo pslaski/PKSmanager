@@ -24,6 +24,16 @@ public class DriverFormBean implements Serializable{
 	@Inject
 	private DriverManager dm;
 
+	
+	
+	public Driver getDriverToUpdate() {
+		return driverToUpdate;
+	}
+
+	public void setDriverToUpdate(Driver driverToUpdate) {
+		this.driverToUpdate = driverToUpdate;
+	}
+
 	public Driver getDriver() {
 		return driver;
 	}

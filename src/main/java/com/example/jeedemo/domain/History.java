@@ -58,6 +58,7 @@ public class History {
 	public void setRoute(Route route) {
 		this.route = route;
 	}
+	
 	@Future
 	@Temporal(TemporalType.DATE)
 	public Date getDate() {
