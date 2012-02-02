@@ -18,14 +18,14 @@ public class DateValidator implements Validator {
 		
 		Date date = (Date) value;
         Date today = new Date();
-        boolean dateGit = false;
         
-        if(date.equals(today)){
-        	
-        }
-        else if(date.before(today)) dateGit = true;
+        System.out.println("dupa");
+        System.out.println(date);
+        System.out.println(today);
+        
+
 		
-		if(dateGit){
+		if(!(date.equals(today)) && date.before(today)){
 			FacesMessage message = new FacesMessage();
 			message.setDetail("Data nie może być wcześniejsza niż dzisiaj");
 			message.setSummary("Data nie może być wcześniejsza niż dzisiaj");
