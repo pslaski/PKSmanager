@@ -123,6 +123,17 @@ public class RouteFormBean implements Serializable {
 	}
 	
 	public String updateRoute(){
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		cal.set(Calendar.HOUR_OF_DAY, h1);
+		cal.set(Calendar.MINUTE, m1);
+		
+		routeToUpdate.setStartTime(cal.getTime());
+		
+		cal.set(Calendar.HOUR_OF_DAY, h2);
+		cal.set(Calendar.MINUTE, m2);
+
+		routeToUpdate.setStopTime(cal.getTime());
 		rm.editRoute(routeToUpdate);
 		routeToUpdate = new Route();
 		return "showRoutes?faces-redirect=true";

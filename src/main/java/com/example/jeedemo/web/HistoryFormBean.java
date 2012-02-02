@@ -38,6 +38,7 @@ public class HistoryFormBean implements Serializable {
 	private Long driverFilter;
 	private Long routeFilter;
 	private Long busFilter;
+	private Date dateFilter;
 	
 	@Inject
 	HistoryManager hm;
@@ -49,6 +50,13 @@ public class HistoryFormBean implements Serializable {
 	RouteManager rm;
 	
 	
+	public Date getDateFilter() {
+		return dateFilter;
+	}
+
+	public void setDateFilter(Date dateFilter) {
+		this.dateFilter = dateFilter;
+	}
 
 	public Long getDriverFilter() {
 		return driverFilter;
@@ -312,6 +320,18 @@ public class HistoryFormBean implements Serializable {
             public boolean accept(History t) {
                 Long busId = getBusFilter();
                 if (busId == null ||  busId.equals(t.getBus().getId())) {
+                    return true;
+                }
+                return false;
+            }
+        };
+    }
+    
+    public Filter<?> getFilterDate() {
+        return new Filter<History>() {
+            public boolean accept(History t) {
+                Date date = getDateFilter();
+                if (date == null ||  date.equals(t.getDate())) {
                     return true;
                 }
                 return false;

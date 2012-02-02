@@ -46,8 +46,15 @@
               <h:outputText value="#{history.bus}" />
             </rich:column>
             
-             <rich:column>
-                <f:facet name="header">#{msg.lineDateLabel}</f:facet>
+             <rich:column filter="#{historyBean.filterDate}">
+                <f:facet name="header"><h:panelGroup>
+                <h:outputText value="#{msg.lineDateLabel}" />
+                <rich:calendar value="#{historyBean.dateFilter}"
+					id="calendar" datePattern="dd.MM.yyyy" showApplyButton="#{true}"
+					cellWidth="24px" cellHeight="22px" style="width:200px;color:black;">
+					<a4j:ajax event="change" execute="@this" render="table"/>
+				</rich:calendar>
+                </h:panelGroup></f:facet>
                 <h:outputText value="#{history.date}" >
 		        <f:convertDateTime pattern="dd/MM/yyyy" timeZone="GMT+1"/>
 				</h:outputText>
