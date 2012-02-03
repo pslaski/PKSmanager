@@ -1,5 +1,6 @@
 package com.example.jeedemo.web;
 
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.faces.application.FacesMessage;
@@ -17,11 +18,12 @@ public class DateValidator implements Validator {
 			throws ValidatorException {
 		
 		Date date = (Date) value;
-        Date today = new Date();
-        
-        System.out.println("dupa");
-        System.out.println(date);
-        System.out.println(today);
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(new Date());
+        cal.set(Calendar.HOUR_OF_DAY, 0);
+        cal.set(Calendar.MINUTE, 0);
+        cal.set(Calendar.SECOND, 0);
+        Date today = cal.getTime();
         
 
 		
