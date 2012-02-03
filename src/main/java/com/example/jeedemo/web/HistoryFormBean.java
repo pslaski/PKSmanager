@@ -128,6 +128,7 @@ public class HistoryFormBean implements Serializable {
 		return histories;
 	}
 	
+	
 	//ACTIONS
 	
 	public String addHistory() {
@@ -149,6 +150,7 @@ public class HistoryFormBean implements Serializable {
 		hm.deleteHistory(historyToDelete);
 		return null;
 	}
+	
 	
 	//HELPERS
 	public SelectItem[] getDriverOptions() {

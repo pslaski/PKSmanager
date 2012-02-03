@@ -26,6 +26,7 @@ public class History {
 	private Bus bus;
 	private Route route;
 	private Date date;
+
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

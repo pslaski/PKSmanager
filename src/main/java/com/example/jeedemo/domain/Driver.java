@@ -17,7 +17,6 @@ import javax.validation.constraints.Size;
 public class Driver {
 
 	private Long id;
-
 	private String name = "unknown";
 	private String surname = "unknown";
 	private boolean status = true;
