@@ -25,12 +25,16 @@ public class DateValidator implements Validator {
         cal.set(Calendar.SECOND, 0);
         Date today = cal.getTime();
         
-
+        System.out.println("dupa");
+        System.out.println(date);
+        System.out.println(today);
+        System.out.println(!(date.equals(today)));
+        System.out.println(date.before(today));
 		
-		if(!(date.equals(today)) && date.before(today)){
+		if(date.compareTo(today) < 0){
 			FacesMessage message = new FacesMessage();
-			message.setDetail("Data nie może być wcześniejsza niż dzisiaj");
-			message.setSummary("Data nie może być wcześniejsza niż dzisiaj");
+			message.setDetail("Data musi być z przyszłości");
+			message.setSummary("Data musi być z przyszłości");
 			message.setSeverity(FacesMessage.SEVERITY_ERROR);
 			throw new ValidatorException(message);
 			
